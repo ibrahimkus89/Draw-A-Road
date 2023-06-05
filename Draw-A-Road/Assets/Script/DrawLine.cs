@@ -10,6 +10,7 @@ public class DrawLine : MonoBehaviour
 
     private Camera _Camera;
     private bool LineStart;
+    private bool StartPhysic;
 
     void Start()
     {
@@ -34,6 +35,16 @@ public class DrawLine : MonoBehaviour
                 UpdateLine(FingerPosition);
 
             }
+        }
+
+        if (Input.GetMouseButtonUp(0) && LineStart && _EdgeCollider.points.Length!=0)
+        {
+            StartPhysic=true;
+        }
+
+        if (StartPhysic)
+        {
+            _LineRenderer.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         }
     }
 
