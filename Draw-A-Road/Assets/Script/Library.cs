@@ -5,44 +5,45 @@ using UnityEngine;
 
 namespace LibraryPro
 {
-    /*
-    public class GenelYonetim
+    
+    public class GeneralManagement
     {
         public static GameManager _GameManager;
 
-        public GenelYonetim(GameManager _gameManager) {
+        public GeneralManagement(GameManager _gameManager)
+        {
 
             _GameManager = _gameManager;
         }
     }
 
    
-    //-- BELLEK YÖNETÝMÝ
-    public static class BellekYonetimi
+    
+    public static class MemoryManagement
     {
 
-        public static void VeriKaydetInt(string Key,int Value)
+        public static void SaveDataInt(string Key,int Value)
         {
             PlayerPrefs.SetInt(Key, Value);
         }
 
-        public static int VeriOkuInt(string Key)
+        public static int ReadDataInt(string Key)
         {
             return PlayerPrefs.GetInt(Key);
         }
 
 
-        public static void VeriKaydetString(string Key, string Value)
+        public static void SaveDataString(string Key, string Value)
         {
             PlayerPrefs.SetString(Key, Value);
         }
 
-        public static string VeriOkuString(string Key)
+        public static string ReadDataString(string Key)
         {
             return PlayerPrefs.GetString(Key);
         }
 
-        public static bool AnahtarVarmi(string Key)
+        public static bool IsThereKey(string Key)
         {
             return PlayerPrefs.HasKey(Key);
 
@@ -51,5 +52,5 @@ namespace LibraryPro
 
     }
 
-    */
+    
 }

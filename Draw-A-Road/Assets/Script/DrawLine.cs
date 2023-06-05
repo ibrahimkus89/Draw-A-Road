@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using LibraryPro;
 using UnityEngine;
 
 public class DrawLine : MonoBehaviour
@@ -40,6 +41,8 @@ public class DrawLine : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && LineStart && _EdgeCollider.points.Length!=0)
         {
             StartPhysic=true;
+            LineStart=false;
+            GeneralManagement._GameManager.LineisOver();
         }
 
         if (StartPhysic)
