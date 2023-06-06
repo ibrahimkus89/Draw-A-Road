@@ -28,6 +28,16 @@ public class GameManager : MonoBehaviour
         }*/
     }
 
+    public void Win()
+    {
+        Debug.Log("win");
+    }
+
+    public void Lost()
+    {
+        Debug.Log("lost");
+    }
+
     void GoToCar()
     {
         Debug.Log("let the car move");

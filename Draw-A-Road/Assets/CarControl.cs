@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using LibraryPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarControl : MonoBehaviour
@@ -32,6 +34,19 @@ public class CarControl : MonoBehaviour
             RearTire.useMotor =false;
             FrontTire.useMotor = false;
 
+        }
+    }
+
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Finish"))
+        {
+            GeneralManagement._GameManager.Win();
+        }
+        else if (collision.CompareTag("Obstacle"))
+        {
+            GeneralManagement._GameManager.Lost();
         }
     }
 }
