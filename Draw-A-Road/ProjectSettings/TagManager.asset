@@ -8,6 +8,8 @@ TagManager:
   - Platform
   - Car
   - CarStop
+  - FxTemporaire
+  - GameSound
   layers:
   - Default
   - TransparentFX

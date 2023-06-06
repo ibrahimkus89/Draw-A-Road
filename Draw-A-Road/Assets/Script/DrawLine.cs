@@ -14,6 +14,7 @@ public class DrawLine : MonoBehaviour
     private bool StartPhysic;
 
     private RaycastHit2D Hit;
+   
     void Start()
     {
         _Camera =Camera.main;
@@ -38,6 +39,7 @@ public class DrawLine : MonoBehaviour
         {
             CreateLine();
             LineStart = true;
+            
         }
 
         if (Input.GetMouseButton(0) && LineStart)
