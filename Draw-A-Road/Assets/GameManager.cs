@@ -9,9 +9,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int LineRight;
     private int ActiveLineIndex;
 
+    GeneralManagement _GeneralManagement;
+    [SerializeField] CarControl _CarControl;
 
-    private GeneralManagement _GeneralManagement;
-
+    private bool _GameOver;
     void Awake()
     {
         _GeneralManagement = new(this);
@@ -30,17 +31,18 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+        _GameOver=true;
         Debug.Log("win");
     }
-
     public void Lost()
     {
+        _CarControl.Go = false;
         Debug.Log("lost");
     }
-
     void GoToCar()
     {
-        Debug.Log("let the car move");
+        _CarControl.Go = true;
+        Invoke("CheckTheCar",4f);
     }
     public void LineisOver()
     {
@@ -58,6 +60,13 @@ public class GameManager : MonoBehaviour
         if (LineRight==0)
         {
             GoToCar();
+        }
+    }
+    void CheckTheCar()
+    {
+        if (!_GameOver)
+        {
+            Lost();
         }
     }
 

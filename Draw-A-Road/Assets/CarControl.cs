@@ -14,12 +14,12 @@ public class CarControl : MonoBehaviour
     [SerializeField] private float Speed;
     [SerializeField] private float Torque;
 
-   
+    public bool Go;
 
    
     void Update()
     {
-        if (Input.GetAxisRaw("Vertical") > 0)
+        if (Go)
         {
             MotorFront.motorSpeed = Speed * -1;
             MotorFront.maxMotorTorque = Torque;
@@ -47,6 +47,11 @@ public class CarControl : MonoBehaviour
         else if (collision.CompareTag("Obstacle"))
         {
             GeneralManagement._GameManager.Lost();
+        }
+
+        else if (collision.CompareTag("CarStop"))
+        {
+            Go = false;
         }
     }
 }

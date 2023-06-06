@@ -13,6 +13,7 @@ public class DrawLine : MonoBehaviour
     private bool LineStart;
     private bool StartPhysic;
 
+    private RaycastHit2D Hit;
     void Start()
     {
         _Camera =Camera.main;
@@ -21,6 +22,18 @@ public class DrawLine : MonoBehaviour
     
     void Update()
     {
+        Hit = Physics2D.Raycast(_Camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,-10)),Vector2.zero);
+
+        if (Hit.collider!=null && LineStart)
+        {
+            if (Hit.collider.CompareTag("Obstacle") || Hit.collider.CompareTag("Platform") || Hit.collider.CompareTag("Car") || Hit.collider.CompareTag("Finish"))
+            {
+                LineStart = false;
+                GeneralManagement._GameManager.LineisOver();
+                
+            }
+        }
+
         if (Input.GetMouseButtonDown(0) && !LineStart)
         {
             CreateLine();
