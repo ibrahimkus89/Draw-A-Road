@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using LibraryPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DrawLine : MonoBehaviour
 {
@@ -35,7 +36,8 @@ public class DrawLine : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && !LineStart)
+        //For Mobile >> EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)
+        if (Input.GetMouseButtonDown(0) && !LineStart && !EventSystem.current.IsPointerOverGameObject() && Time.timeScale!=0)
         {
             CreateLine();
             LineStart = true;
@@ -55,9 +57,20 @@ public class DrawLine : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && LineStart && _EdgeCollider.points.Length!=0)
         {
-            StartPhysic=true;
-            LineStart=false;
-            GeneralManagement._GameManager.LineisOver();
+            LineStart = false;
+
+            if (FingerPositionList.Count<10)
+            {
+                FingerPositionList.Clear();
+                _LineRenderer.positionCount = 2;
+            }
+            else
+            {
+                StartPhysic = true;
+                GeneralManagement._GameManager.LineisOver();
+            }
+
+           
         }
 
         if (StartPhysic)
@@ -68,7 +81,7 @@ public class DrawLine : MonoBehaviour
 
     void CreateLine()
     {
-        FingerPositionList.Clear();
+       
         FingerPositionList.Add(_Camera.ScreenToWorldPoint(Input.mousePosition));
         FingerPositionList.Add(_Camera.ScreenToWorldPoint(Input.mousePosition));
 
